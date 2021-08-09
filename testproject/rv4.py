@@ -23,9 +23,25 @@ driver.get(URL)
 #                    WORKBENCH
 ####################################################
 
+cities_txt = driver.find_element_by_xpath('//textarea').text
+print(cities_txt)
+#  Leválasztom az első és utolsó idézőjelet (kivételkezelés um)
+cities_txt = cities_txt[1:len(cities_txt)-1]
+#  Előállítok egy szeparátort, amely egyben a fölös idézőjeleket is leszedi
+list_of_cities = cities_txt.split('", "')
+print(list_of_cities)
+result = driver.find_element_by_id('result').text
+index = 0
+while result == 'Nem találtad el.' or result == '':
+    driver.find_element_by_id('missingCity').send_keys(list_of_cities[index])
+    driver.find_element_by_id('submit').click()
+    driver.find_element_by_id('missingCity').clear()
+    index += 1
+    # time.sleep(1)
 
 ####################################################
 #                  TEST CASES
 ####################################################
+
 
 
