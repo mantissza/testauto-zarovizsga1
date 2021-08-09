@@ -36,6 +36,7 @@ while result == 'Nem találtad el.' or result == '':
     driver.find_element_by_id('missingCity').send_keys(list_of_cities[index])
     driver.find_element_by_id('submit').click()
     driver.find_element_by_id('missingCity').clear()
+    result = driver.find_element_by_id('result').text
     index += 1
     # time.sleep(1)
 
